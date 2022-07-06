@@ -1,10 +1,9 @@
 #include "framework.h"
-
 namespace funcs
 {
     std::mutex m;
     std::vector<std::pair<std::string, std::chrono::high_resolution_clock::time_point>> Events{};
-
+  
     void LogEvent(std::string Name, bool PrintToConsole, bool SaveToLog)
     {
         if (!SaveToLog && !PrintToConsole) return;
@@ -12,7 +11,7 @@ namespace funcs
         m.lock();
         static FILE* fp;
         if (!fp) {
-            std::wstring logpath = L"C:/temp/log_aimgods.txt";
+            std::wstring logpath = L"C:\\Users\\ilove\\AppData\\Local\\Temp\\log_aimgods.txt";
             _wfopen_s(&fp, logpath.c_str(), L"a");
         }
 

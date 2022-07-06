@@ -29,26 +29,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -168,6 +168,12 @@
     <ClInclude Include="UFT\SDK\BP_AGCharacter_classes.h" />
     <ClInclude Include="UFT\SDK\BP_AGCharacter_parameters.h" />
     <ClInclude Include="UFT\SDK\BP_AGCharacter_structs.h" />
+    <ClInclude Include="UFT\SDK\BP_AGGameInstance_classes.h" />
+    <ClInclude Include="UFT\SDK\BP_AGGameInstance_parameters.h" />
+    <ClInclude Include="UFT\SDK\BP_AGGameInstance_structs.h" />
+    <ClInclude Include="UFT\SDK\BP_AGGameState_classes.h" />
+    <ClInclude Include="UFT\SDK\BP_AGGameState_parameters.h" />
+    <ClInclude Include="UFT\SDK\BP_AGGameState_structs.h" />
     <ClInclude Include="UFT\SDK\BP_AGPlayerController_classes.h" />
     <ClInclude Include="UFT\SDK\BP_AGPlayerController_parameters.h" />
     <ClInclude Include="UFT\SDK\BP_AGPlayerController_structs.h" />
@@ -190,6 +196,8 @@
     <ClCompile Include="UFT\SDK\AimGods_functions.cpp" />
     <ClCompile Include="UFT\SDK\BasicHelper.cpp" />
     <ClCompile Include="UFT\SDK\BP_AGCharacter_functions.cpp" />
+    <ClCompile Include="UFT\SDK\BP_AGGameInstance_functions.cpp" />
+    <ClCompile Include="UFT\SDK\BP_AGGameState_functions.cpp" />
     <ClCompile Include="UFT\SDK\BP_AGPlayerController_functions.cpp" />
     <ClCompile Include="UFT\SDK\CoreUObject_functions.cpp" />
     <ClCompile Include="UFT\SDK\Engine_functions.cpp" />

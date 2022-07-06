@@ -90,6 +90,24 @@
     <ClInclude Include="detours\detver.h">
       <Filter>detours</Filter>
     </ClInclude>
+    <ClInclude Include="UFT\SDK\BP_AGGameInstance_classes.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\BP_AGGameInstance_parameters.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\BP_AGGameInstance_structs.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\BP_AGGameState_classes.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\BP_AGGameState_parameters.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\BP_AGGameState_structs.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -133,6 +151,12 @@
     </ClCompile>
     <ClCompile Include="detours\modules.cpp">
       <Filter>detours</Filter>
+    </ClCompile>
+    <ClCompile Include="UFT\SDK\BP_AGGameInstance_functions.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="UFT\SDK\BP_AGGameState_functions.cpp">
+      <Filter>SDK</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

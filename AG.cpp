@@ -9,13 +9,24 @@ UFT::APlayerController* AG::GetPC()
 		return GameInstance->LocalPlayers[0]->PlayerController;
 	return nullptr;
 }
-
+UFT::UBP_AGGameInstance_C* AG::GetUBP_UAGGameInstance()
+{
+	UFT::UAGGameInstance* const UAGGameInstance = GetUAGGameInstance();
+	if (UAGGameInstance) return (UFT::UBP_AGGameInstance_C*)UAGGameInstance;
+	return nullptr;
+}
+UFT::UAGGameInstance* AG::GetUAGGameInstance() {
+	UFT::UGameInstance* const GameInstance = GetGameInstance();
+	if (GameInstance) return (UFT::UAGGameInstance*)GameInstance;
+	return nullptr;
+}
 UFT::AAGPlayerController* AG::GetAGPC()
 {
 	UFT::APlayerController* const PC = GetPC();
 	if (PC) return (UFT::AAGPlayerController*)PC;
 	return nullptr;
 }
+
 
 UFT::ABP_AGPlayerController_C* AG::GetBPAAGPC()
 {
@@ -24,9 +35,14 @@ UFT::ABP_AGPlayerController_C* AG::GetBPAAGPC()
 	return nullptr;
 }
 
+UFT::
+
+UFT::UObject* AG::GetUObject() {
+	return *reinterpret_cast<UFT::UObject**>(reinterpret_cast<unsigned char*>(GetModuleHandleW(nullptr)) + 0x3802F10);
+}
 UFT::UWorld* AG::GetWorld()
 {
-	return *reinterpret_cast<UFT::UWorld**>(reinterpret_cast<unsigned char*>(GetModuleHandleW(nullptr)) + 0x38E9B78);
+	return *reinterpret_cast<UFT::UWorld**>(reinterpret_cast<unsigned char*>(GetModuleHandleW(nullptr)) + 0x38EAC38);  //old: 0x38E9B78
 }
 
 UFT::UGameInstance* AG::GetGameInstance()
@@ -34,6 +50,13 @@ UFT::UGameInstance* AG::GetGameInstance()
 	UFT::UWorld* const World = GetWorld();
 	if (World) return World->OwningGameInstance;
 	return nullptr;
+}
+
+void AG::Begin()
+{
+	if (!GetBPAAGPC() || !GetBPAAGPC()->K2_GetPawn())
+		return;
+	
 }
 
 void AG::LockOnClosestTarget()
