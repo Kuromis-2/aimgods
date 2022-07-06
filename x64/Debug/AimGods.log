@@ -1,4 +1,4 @@
-﻿  dllmain.cpp
+﻿  funcs.cpp
 D:\AimGods-main (3)\AimGods-main\UFT\SDK\BasicHelper.h(350,29): warning C4018: '<': signed/unsigned mismatch
 D:\AimGods-main (3)\AimGods-main\UFT\SDK\BasicHelper.h(378,27): warning C4244: 'initializing': conversion from 'uintptr_t' to 'int32_t', possible loss of data
 D:\AimGods-main (3)\AimGods-main\UFT\SDK\BasicHelper.h(845,24): warning C4099: 'UFT::FStructBaseChain': type name first seen using 'struct' now seen using 'class'

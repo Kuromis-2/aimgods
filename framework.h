@@ -16,9 +16,7 @@
 #include <mutex>
 #include <random>
 #include "AG.h"
-#include "Keybinds.h"
 #include "funcs.h"
-
 static __forceinline UFT::UGameplayStatics& GetGameplayStatics() { return *(UFT::UGameplayStatics*)UFT::UGameplayStatics::StaticClass(); };
 static __forceinline UFT::UKismetMathLibrary& GetKismetMathLibrary() { return *(UFT::UKismetMathLibrary*)UFT::UKismetMathLibrary::StaticClass(); };
 static __forceinline UFT::UKismetSystemLibrary& GetKismetSystemLibrary() { return *(UFT::UKismetSystemLibrary*)UFT::UKismetSystemLibrary::StaticClass(); };

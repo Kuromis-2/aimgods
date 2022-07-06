@@ -43,7 +43,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -78,6 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -159,7 +161,6 @@
     <ClInclude Include="detours\detver.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="funcs.h" />
-    <ClInclude Include="Keybinds.h" />
     <ClInclude Include="UFT\SDK.h" />
     <ClInclude Include="UFT\SDK\AimGods_classes.h" />
     <ClInclude Include="UFT\SDK\AimGods_parameters.h" />
@@ -192,7 +193,6 @@
     <ClCompile Include="detours\modules.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="funcs.cpp" />
-    <ClCompile Include="Keybinds.cpp" />
     <ClCompile Include="UFT\SDK\AimGods_functions.cpp" />
     <ClCompile Include="UFT\SDK\BasicHelper.cpp" />
     <ClCompile Include="UFT\SDK\BP_AGCharacter_functions.cpp" />

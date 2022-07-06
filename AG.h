@@ -12,6 +12,14 @@ public:
 	static UFT::UAGGameInstance* GetUAGGameInstance();
 	static UFT::UBP_AGGameInstance_C* GetUBP_UAGGameInstance();
 	static UFT::UObject* GetUObject();
+	static UFT::AActor* GetAActor();
+	static UFT::AInfo* GetAInfo();
+	static UFT::AGameStateBase* GetAGameStateBase();
+	static UFT::AGameState* GetAGameState();
+	static UFT::AGameModeBase* GetAGameModeBase();
+	static UFT::AGameMode* GetAGameMode();
+	static UFT::UAGGameliftSubsystem* GetUAGGameliftSubsystem();
+	static UFT::UWB_CheatManager_C* GetUWB_CheatManager();
 	static void LockOnClosestTarget();
 	static void Begin();
 	
