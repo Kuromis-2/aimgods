@@ -2,11 +2,37 @@
 
 UFT::ABP_AGCharacter_C* AG::Target = nullptr;
 
+
 UFT::APlayerController* AG::GetPC()
 {
 	UFT::UGameInstance* const GameInstance = GetGameInstance();
 	if (GameInstance && GameInstance->LocalPlayers[0]) 
 		return GameInstance->LocalPlayers[0]->PlayerController;
+	return nullptr;
+}
+UFT::UGameLiftClientUtils* AG::GetGameLiftClientUtils()
+{
+	static auto ptr = UFT::UObject::FindClass("Class AimGods.GameLiftClientUtils");
+	auto ptr2 = reinterpret_cast<UFT::UGameLiftClientUtils*>(reinterpret_cast<unsigned char*>(ptr));
+	return ptr2;
+}
+UFT::AActor* AG::GetAActor()
+{
+	UFT::UWorld* const World = GetWorld();
+	if(World)
+		return World->LevelSequenceActors[0];
+}
+
+UFT::UCheatManager* AG::GetCheatManager()
+{
+	UFT::APlayerController* const PC = GetPC();
+	if (PC) return PC->CheatManager;
+	return nullptr;
+}
+UFT::APawn* AG::GetAPawn()
+{
+	UFT::APlayerController* const PC = GetPC();
+	if (PC) return PC->AcknowledgedPawn;
 	return nullptr;
 }
 UFT::UBP_AGGameInstance_C* AG::GetUBP_UAGGameInstance()
@@ -50,13 +76,7 @@ UFT::AGameState* AG::GetAGameState()
 	if (StateBase) return (UFT::AGameState*)StateBase;
 	return nullptr;
 }
-UFT::UAGGameliftSubsystem* AG::GetUAGGameliftSubsystem()
-{
-	static auto ptr = UFT::UObject::FindClass("Class AimGods.AGGameliftSubsystem");
-	static auto ptr2 = *reinterpret_cast<UFT::UAGGameliftSubsystem**>(ptr);
-	printf("%p", ptr2);
-	return *reinterpret_cast<UFT::UAGGameliftSubsystem**>(ptr);
-}
+
 //UFT::AActor* AG::GetAActor()
 //{
 //	UFT::UWorld* const World = GetWorld();
@@ -70,7 +90,24 @@ UFT::ABP_AGPlayerController_C* AG::GetBPAAGPC()
 	if (PC) return (UFT::ABP_AGPlayerController_C*)PC;
 	return nullptr;
 }
-
+UFT::UAGCustomGameSubsystem* AG::GetUAGCustomGameSubsystem()
+{
+	UFT::UAGGameInstance* const GameInstance = GetUAGGameInstance();
+	if (GameInstance) return GameInstance->CustomGameSubsystem;
+	return nullptr;
+}
+UFT::UAGGameliftSubsystem* AG::GetUAGGameliftSubsystem()
+{
+	UFT::UAGGameInstance* const GameInstance = GetUAGGameInstance();
+	if (GameInstance) return GameInstance->GameliftSubsystem;
+	return nullptr;
+}
+UFT::ULevel* AG::GetUlevel()
+{
+	UFT::UWorld* const World = GetWorld();
+	if (World) return World->PersistentLevel;
+	return nullptr;
+}
 UFT::UWorld* AG::GetWorld()
 {
 	return *reinterpret_cast<UFT::UWorld**>(reinterpret_cast<unsigned char*>(GetModuleHandleW(nullptr)) + 0x38EAC38);  //old: 0x38E9B78

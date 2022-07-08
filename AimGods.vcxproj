@@ -78,8 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -160,7 +160,27 @@
     <ClInclude Include="detours\detours.h" />
     <ClInclude Include="detours\detver.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="funcs.h" />
+    <ClInclude Include="Funcs.h" />
+    <ClInclude Include="GameFunctions.h" />
+    <ClInclude Include="Hooks.h" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="imgui\imgui_impl_win32.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="includes.h" />
+    <ClInclude Include="kiero\kiero.h" />
+    <ClInclude Include="kiero\minhook\include\MinHook.h" />
+    <ClInclude Include="kiero\minhook\src\buffer.h" />
+    <ClInclude Include="kiero\minhook\src\hde\hde32.h" />
+    <ClInclude Include="kiero\minhook\src\hde\hde64.h" />
+    <ClInclude Include="kiero\minhook\src\hde\pstdint.h" />
+    <ClInclude Include="kiero\minhook\src\hde\table32.h" />
+    <ClInclude Include="kiero\minhook\src\hde\table64.h" />
+    <ClInclude Include="kiero\minhook\src\trampoline.h" />
     <ClInclude Include="UFT\SDK.h" />
     <ClInclude Include="UFT\SDK\AimGods_classes.h" />
     <ClInclude Include="UFT\SDK\AimGods_parameters.h" />
@@ -192,7 +212,21 @@
     <ClCompile Include="detours\image.cpp" />
     <ClCompile Include="detours\modules.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="funcs.cpp" />
+    <ClCompile Include="Funcs.cpp" />
+    <ClCompile Include="GameFunctions.cpp" />
+    <ClCompile Include="Hooks.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="kiero\kiero.cpp" />
+    <ClCompile Include="kiero\minhook\src\buffer.c" />
+    <ClCompile Include="kiero\minhook\src\hde\hde32.c" />
+    <ClCompile Include="kiero\minhook\src\hde\hde64.c" />
+    <ClCompile Include="kiero\minhook\src\hook.c" />
+    <ClCompile Include="kiero\minhook\src\trampoline.c" />
     <ClCompile Include="UFT\SDK\AimGods_functions.cpp" />
     <ClCompile Include="UFT\SDK\BasicHelper.cpp" />
     <ClCompile Include="UFT\SDK\BP_AGCharacter_functions.cpp" />
@@ -201,6 +235,12 @@
     <ClCompile Include="UFT\SDK\BP_AGPlayerController_functions.cpp" />
     <ClCompile Include="UFT\SDK\CoreUObject_functions.cpp" />
     <ClCompile Include="UFT\SDK\Engine_functions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="kiero\minhook\dll_resources\MinHook.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="kiero\minhook\dll_resources\MinHook.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -3,6 +3,8 @@
 class AG
 {
 public:
+	static UFT::UAGCustomGameSubsystem* GetUAGCustomGameSubsystem();
+	static UFT::UGameLiftClientUtils* GetGameLiftClientUtils();
 	static UFT::ABP_AGCharacter_C* Target;
 	static UFT::APlayerController* GetPC();
 	static UFT::AAGPlayerController* GetAGPC();
@@ -14,12 +16,16 @@ public:
 	static UFT::UObject* GetUObject();
 	static UFT::AActor* GetAActor();
 	static UFT::AInfo* GetAInfo();
+	static UFT::ULevel* GetUlevel();
 	static UFT::AGameStateBase* GetAGameStateBase();
 	static UFT::AGameState* GetAGameState();
 	static UFT::AGameModeBase* GetAGameModeBase();
 	static UFT::AGameMode* GetAGameMode();
 	static UFT::UAGGameliftSubsystem* GetUAGGameliftSubsystem();
 	static UFT::UWB_CheatManager_C* GetUWB_CheatManager();
+	static UFT::UCheatManager* GetCheatManager();
+	static UFT::UClass* GetCheatClass();
+	static UFT::APawn* GetAPawn();
 	static void LockOnClosestTarget();
 	static void Begin();
 	

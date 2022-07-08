@@ -1,5 +1,5 @@
 #include "framework.h"
-namespace funcs
+namespace Funcs
 {
     std::mutex m;
     std::vector<std::pair<std::string, std::chrono::high_resolution_clock::time_point>> Events{};
@@ -74,5 +74,15 @@ namespace funcs
         std::string strTo(size_needed, 0);
         WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), &strTo[0], size_needed, NULL, NULL);
         return strTo;
+    }
+
+    std::wstring utf8_decode(const std::string& str)
+    {
+        //return std::wstring(str.begin(), str.end());
+        if (str.empty()) return std::wstring();
+        int size_needed = MultiByteToWideChar(CP_UTF8, 0, &str[0], (int)str.size(), NULL, 0);
+        std::wstring wstrTo(size_needed, 0);
+        MultiByteToWideChar(CP_UTF8, 0, &str[0], (int)str.size(), &wstrTo[0], size_needed);
+        return wstrTo;
     }
 }
