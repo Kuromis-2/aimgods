@@ -1,1 +1,2 @@
 D:\AimGods-main (3)\AimGods-main\x64\Debug\AimGods.dll
+C:\Users\mailr\Workspace\Finalmouse\aimgods\client\x64\Debug\AimGods.dll

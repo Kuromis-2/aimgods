@@ -1,0 +1,18 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="AimGods" type="CppProject" factoryName="C++ Project">
+    <configuration_1>
+      <option name="CONFIGURATION" value="Debug" />
+      <option name="PLATFORM" value="x64" />
+      <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/AimGods.vcxproj" />
+      <option name="EXE_PATH" value="$(ProjectDir)\injector\dll_injector64.exe" />
+      <option name="PROGRAM_PARAMETERS" value="/dll $(TargetPath) /target $(ProjectDir)\game\AimGods\Binaries\Win64\AimGods-Win64-Shipping.exe" />
+      <option name="WORKING_DIRECTORY" value="$(ProjectDir)" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+    </configuration_1>
+    <option name="DEFAULT_PROJECT_PATH" value="" />
+    <method v="2">
+      <option name="Build" />
+    </method>
+  </configuration>
+</component>

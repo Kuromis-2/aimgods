@@ -163,7 +163,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
         UFT::InitSdk();
         
         CreateThread(0, 0, Logging, hModule, 0, 0);
-        //CreateThread(0, 0, MainThread, hModule, 0, nullptr);
+        CreateThread(0, 0, MainThread, hModule, 0, nullptr);
         
 		return TRUE;
 	}

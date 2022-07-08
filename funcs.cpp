@@ -1,3 +1,5 @@
+#include <fstream>
+
 #include "framework.h"
 namespace Funcs
 {
@@ -11,7 +13,7 @@ namespace Funcs
         m.lock();
         static FILE* fp;
         if (!fp) {
-            std::wstring logpath = L"C:\\Users\\ilove\\AppData\\Local\\Temp\\log_aimgods.txt";
+            std::wstring logpath = L"log_aimgods.txt";
             _wfopen_s(&fp, logpath.c_str(), L"a");
         }
 
