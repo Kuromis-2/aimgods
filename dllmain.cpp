@@ -121,6 +121,13 @@ void CommandHandler(std::string command)
         }
         
     }
+    else if(command=="ShowRespawnScreen")
+    {
+	    if(AG::GetAGPC)
+	    {
+            AG::GetAGPC()->ShowRespawnScreen(60);
+	    }
+    }
     else if(command=="StartMatch2")
     {
         if(AG::GetAGameModeBase())
@@ -145,12 +152,12 @@ void CommandHandler(std::string command)
 }
 DWORD WINAPI Logging(LPVOID lpReserved)
 {
-    /*AllocConsole();
+    AllocConsole();
     FILE* file = nullptr;
     freopen_s(&file,"CONIN$", "r", stdin);
     freopen_s(&file, "CONOUT$", "w", stdout);
 
-    ShowWindow(GetConsoleWindow(), SW_SHOW);*/
+    ShowWindow(GetConsoleWindow(), SW_SHOW);
     Hooks::HookFunctions();
     return TRUE;
 }
@@ -163,7 +170,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
         UFT::InitSdk();
         
         CreateThread(0, 0, Logging, hModule, 0, 0);
-        //CreateThread(0, 0, MainThread, hModule, 0, nullptr);
+        CreateThread(0, 0, MainThread, hModule, 0, nullptr);
         
 		return TRUE;
 	}

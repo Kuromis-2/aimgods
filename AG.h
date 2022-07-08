@@ -3,6 +3,8 @@
 class AG
 {
 public:
+	static UFT::FLevelCollection* GetLevelCollection();
+	static UFT::UAvoidanceManager* GetAvoidanceManager();
 	static UFT::UAGCustomGameSubsystem* GetUAGCustomGameSubsystem();
 	static UFT::UGameLiftClientUtils* GetGameLiftClientUtils();
 	static UFT::ABP_AGCharacter_C* Target;

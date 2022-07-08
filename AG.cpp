@@ -52,6 +52,18 @@ UFT::AAGPlayerController* AG::GetAGPC()
 	if (PC) return (UFT::AAGPlayerController*)PC;
 	return nullptr;
 }
+UFT::FLevelCollection* AG::GetLevelCollection()
+{
+	UFT::UWorld* const World = GetWorld();
+	if (World) return &World->LevelCollections[0];
+	return nullptr;
+}
+UFT::UAvoidanceManager* AG::GetAvoidanceManager()
+{
+	UFT::UWorld* const World = GetWorld();
+	if (World) return World->AvoidanceManager;
+	return nullptr;
+}
 UFT::AGameModeBase* AG::GetAGameModeBase()
 {
 	UFT::UWorld* const World = GetWorld();
