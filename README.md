@@ -1,7 +1,7 @@
 # AimGods
-Aim Gods internal hack
+Aim Gods Framework with full access to the game functions
 
-https://www.unknowncheats.me/forum/other-fps-games/432460-aim-gods-internal.html#post3015029
+
 
 Credits:
-  - CorrM for his [UnrealFinderTool](https://corrm.github.io/uft/) to dump SDK for the game
+  - doug157 | Framework is basically his cheat with updated offsets and the cheatfunctions removed
