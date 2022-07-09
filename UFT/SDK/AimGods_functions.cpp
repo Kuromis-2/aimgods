@@ -1231,7 +1231,7 @@ void AAGTowerBase::OnRep_bShieldEnabled()
 void AAGTowerBase::OnRep_bIsDestroyed()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AimGods.AGTowerBase.OnRep_bIsDestroyed");
-
+	
 	AAGTowerBase_OnRep_bIsDestroyed_Params params;
 
 	auto flags = fn->FunctionFlags;

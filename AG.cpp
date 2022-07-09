@@ -10,6 +10,25 @@ UFT::APlayerController* AG::GetPC()
 		return GameInstance->LocalPlayers[0]->PlayerController;
 	return nullptr;
 }
+UFT::UWebSocketManager* AG::GetWebSocketManager()
+{
+	UFT::UAGGameInstance* const GameInstance = GetUAGGameInstance();
+	if (GameInstance)
+		return GameInstance->Socket;
+	return nullptr;
+}
+UFT::AAGGameMode* AG::GetAAGGameMode()
+{
+	UFT::AGameMode* const GameMode = GetAGameMode();
+	if (GameMode) return(UFT::AAGGameMode*)GameMode;
+	return nullptr;
+}
+UFT::UWB_CheatManager_C* AG::GetUWBCheatManager()
+{
+	UFT::ABP_AGPlayerController_C* const PC = GetBPAAGPC();
+	if (PC) return PC->CheatManagerWidget;
+	return nullptr;
+}
 UFT::UGameLiftClientUtils* AG::GetGameLiftClientUtils()
 {
 	static auto ptr = UFT::UObject::FindClass("Class AimGods.GameLiftClientUtils");
@@ -22,11 +41,38 @@ UFT::AActor* AG::GetAActor()
 	if(World)
 		return World->LevelSequenceActors[0];
 }
-
+UFT::AActor** AG::GetAActor2()
+{
+	UFT::UWorld* const World = GetWorld();
+	if (World)
+	{
+		auto ptr = World->LevelSequenceActors[0];
+		auto ptr2 = &ptr;
+		return ptr2;
+	}
+}
 UFT::UCheatManager* AG::GetCheatManager()
 {
 	UFT::APlayerController* const PC = GetPC();
 	if (PC) return PC->CheatManager;
+	return nullptr;
+}
+UFT::AAGCharacter* AG::GetAAGCharacter()
+{
+	UFT::AAGCharacterBase* const ACB = GetAAGCharacterBase();
+	if (ACB) return (UFT::AAGCharacter*)ACB;
+	return nullptr;
+}
+UFT::ACharacter* AG::GetACharacter()
+{
+	UFT::APawn* const Pawn = GetAPawn();
+	if (Pawn)return(UFT::ACharacter*)Pawn;
+	return nullptr;
+}
+UFT::AAGCharacterBase* AG::GetAAGCharacterBase()
+{
+	UFT::ACharacter* const AC = AG::GetACharacter();
+	if (AC) return(UFT::AAGCharacterBase*)AC;
 	return nullptr;
 }
 UFT::APawn* AG::GetAPawn()
@@ -70,6 +116,33 @@ UFT::AGameModeBase* AG::GetAGameModeBase()
 	if (World) return World->AuthorityGameMode;
 	return nullptr;
 }
+UFT::UGameplayTaskOwnerInterface* AG::GetTaskOwner()
+{
+	static auto ptr = UFT::UObject::FindClass("Class GameplayTasks.GameplayTaskOwnerInterface");
+	std::cout << "Found Pointer to UGamePlayTaskOwnerInterface at";
+	std::cout << ptr;
+	return (UFT::UGameplayTaskOwnerInterface*)ptr;
+}
+UFT::UGameplayTask* AG::GetGamePlayTask()
+{
+	static auto ptr = UFT::UObject::FindClass("Class GameplayTasks.GameplayTask");
+	std::cout << "Found Pointer to UGamePlayTask at";
+	std::cout << ptr;
+	return (UFT::UGameplayTask*)ptr;
+}
+UFT::UGameplayTask_SpawnActor* AG::GetSpawn()
+{
+	UFT::UGameplayTask* const Task = GetGamePlayTask();
+	std::cout << "Try casting to SpawnActor" << std::endl;
+	if (Task)
+	{
+		auto ptr = (UFT::UGameplayTask_SpawnActor*)Task;
+		std::cout << "Casted UGamePlayTask to SpawnActor";
+		std::cout << ptr << std::endl;
+	}
+	return nullptr;
+}
+
 UFT::AGameMode* AG::GetAGameMode()
 {
 	UFT::AGameModeBase* const Base = GetAGameModeBase();
@@ -132,9 +205,3 @@ UFT::UGameInstance* AG::GetGameInstance()
 	return nullptr;
 }
 
-void AG::Begin()
-{
-	if (!GetBPAAGPC() || !GetBPAAGPC()->K2_GetPawn())
-		return;
-	
-}

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "includes.h"
+#include <map>
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 typedef void(*tProcessEvent)(UFT::UObject*, UFT::UFunction*, void*);
 typedef void(*tRequestExit)(bool);
@@ -13,6 +14,9 @@ ID3D11Device* pDevice = NULL;
 ID3D11DeviceContext* pContext = NULL;
 ID3D11RenderTargetView* mainRenderTargetView;
 bool mustspectatebypass = false;
+bool logfunctions = false;
+void Summon(std::wstring);
+DWORD WINAPI Logging(LPVOID lpReserved);
 void InitImGui()
 {
     ImGui::CreateContext();
@@ -28,6 +32,10 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
     return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }
+
+
+
+
 bool init = !true;
 HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
@@ -51,45 +59,44 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
         else
             return oPresent(pSwapChain, SyncInterval, Flags);
     }
-
+    static char str0[128] = "input text";
     ImGui_ImplDX11_NewFrame();
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
     
-    ImGui::Begin("ImGui Window");
-    
+    ImGui::Begin("DEBUG WINDOW");
+    ImGui::Text("Enter Command:");
+    ImGui::SameLine();
+    if (ImGui::InputText("", str0, IM_ARRAYSIZE(str0), 32))
+    {
+        std::string str(str0);
+        CommandHandler(str);
+    }
+    if (ImGui::Button("Execute"))
+    {
+        std::string str(str0);
+        CommandHandler(str);
+    }
+    ImGui::Checkbox("Block Mustspectate", &mustspectatebypass);
 
-    
-    
-    ImGui::Text("Hello, world");
-
+    ImGui::Checkbox("Log Functions", &logfunctions);
     //create imgui textbox for new command
-	std::string command = "Placeholer";
-    ImGui::Text("Enter Command");
-	static char str0[128] = "Hello, world!";
-	ImGui::InputText("HELLO",str0, IM_ARRAYSIZE(str0));
-	ImGui::SameLine();
-    ImGui::Checkbox("Disable Mustspectate", &mustspectatebypass);
-	if (ImGui::Button("Send"))
-	{
-		std::string str(str0);
-		CommandHandler(str);
-	}
-			
-	
-
-    
-    
-
     ImGui::End();
-
     ImGui::Render();
     pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
     return oPresent(pSwapChain, SyncInterval, Flags);
 }
+void Summon(std::wstring)
+{
+    if(AG::GetCheatManager())
+    {
+	    
+    }
+}
 DWORD WINAPI MainThread(LPVOID lpReserved)
 {
+    
     bool init_hook = false;
     do
     {
@@ -97,10 +104,12 @@ DWORD WINAPI MainThread(LPVOID lpReserved)
         {
             kiero::bind(8, (void**)&oPresent, hkPresent);
             init_hook = true;
+            std::cout << "GUI Initialized" << std::endl;
         }
     } while (!init_hook);
     return TRUE;
 }
+
 void CommandHandler(std::string command)
 {
     if(command == "OpenShop")
@@ -108,7 +117,25 @@ void CommandHandler(std::string command)
         if(AG::GetBPAAGPC())
             AG::GetBPAAGPC()->Open_Shop_UI();
     }
-    
+    if (command == "CloseShop")
+    {
+        if (AG::GetBPAAGPC())
+            AG::GetBPAAGPC()->Close_Shop_UI();
+    }
+    else if(command=="SpawnDefaultController")
+    {
+	    if(AG::GetAPawn())
+	    {
+		    AG::GetAPawn()->SpawnDefaultController();
+	    }
+    }
+    else if (command == "ReceivePossessed")
+    {
+        if (AG::GetAPawn())
+        {
+            AG::GetAPawn()->ReceivePossessed(AG::GetPC());
+        }
+    }
     else if(command=="StartCustom")
     {
         
@@ -125,7 +152,7 @@ void CommandHandler(std::string command)
     {
 	    if(AG::GetAGPC)
 	    {
-            AG::GetAGPC()->ShowRespawnScreen(60);
+            AG::GetAGPC()->ShowRespawnScreen(10000);
 	    }
     }
     else if(command=="StartMatch2")
@@ -148,18 +175,106 @@ void CommandHandler(std::string command)
             
         }
     }
-    
+    else if(command=="ActivateCheats")
+    {
+	    if(AG::GetPC())
+	    {
+            AG::GetPC()->EnableCheats();
+	    }
+    }
+    else if(command=="OpenSocket")
+    {
+	    if(AG::GetWebSocketManager())
+	    {
+		    AG::GetWebSocketManager()->OpenConnection();
+	    }
+    }
+    else if(command=="CheatMenu")
+    {
+	    if(AG::GetUWBCheatManager())
+	    {
+            AG::GetUWBCheatManager()->Construct();
+	    }
+    }
+    else if(command=="UpdateInMatchStatus")
+    {
+	    if(AG::GetWebSocketManager())
+	    {
+		    AG::GetWebSocketManager()->UpdateInMatchStatus(true);
+	    }
+    }
+    else if(command=="LoadGame")
+    {
+	    if(AG::GetBPAAGPC())
+	    {
+            AG::GetBPAAGPC()->AddCheatManagerWidget();
+	    }
+    }
+    else if(command=="KillingSpree")
+    {
+	    if(AG::GetBPAAGPC())
+	    {
+		    AG::GetBPAAGPC()->ShowKillingSpreeMessage();
+	    }
+    }
+    else if(command=="SaveGame")
+    {
+	    if(AG::GetUAGGameInstance())
+	    {
+		    AG::GetUAGGameInstance()->SaveGame();
+	    }
+    }
+    else if(command=="RestartPlayer")
+    {
+        if(AG::GetAGameModeBase())
+		{
+			AG::GetAGameModeBase()->RestartPlayer(AG::GetPC());
+		}
+    }
+    else if (command == "RestartGame")
+    {
+        if (AG::GetAGameMode())
+        {
+	        AG::GetAGameMode()->RestartGame();
+        }
+    }
+    else if (command == "Spawn")
+    {
+		
+    }
+    else if(command=="minions")
+    {
+	    if(AG::GetAAGGameMode())
+	    {
+            AG::GetAAGGameMode()->SpawnMinions();
+	    }
+    }
 }
+bool initLog = true;
 DWORD WINAPI Logging(LPVOID lpReserved)
 {
-    AllocConsole();
-    FILE* file = nullptr;
-    freopen_s(&file,"CONIN$", "r", stdin);
-    freopen_s(&file, "CONOUT$", "w", stdout);
+    if(initLog)
+    {
+        AllocConsole();
+        FILE* file = nullptr;
+        freopen_s(&file, "CONIN$", "r", stdin);
+        freopen_s(&file, "CONOUT$", "w", stdout);
 
-    ShowWindow(GetConsoleWindow(), SW_SHOW);
-    Hooks::HookFunctions();
-    return TRUE;
+        ShowWindow(GetConsoleWindow(), SW_SHOW);
+        Hooks::HookFunctions();
+        initLog = false;
+        return TRUE;
+    }
+    else
+    {
+        AllocConsole();
+        FILE* file = nullptr;
+        freopen_s(&file, "CONIN$", "r", stdin);
+        freopen_s(&file, "CONOUT$", "w", stdout);
+
+        ShowWindow(GetConsoleWindow(), SW_SHOW);
+    }
+    
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)

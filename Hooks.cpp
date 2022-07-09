@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "GameFunctions.h"
-
+#include "dllmain.h"
 namespace Hooks {
 
     // Typedefing the function types
@@ -24,18 +24,22 @@ namespace Hooks {
     
     void hProcessEvent(UFT::UObject* Object, UFT::UFunction* Function, void* Params)
     {
-        if (GetAsyncKeyState(VK_CAPITAL) & (1 << 16))
+        if (GetAsyncKeyState(VK_CAPITAL) & (1 << 16)|| logfunctions)
         {
             Funcs::LogEvent(Function->GetFullName().c_str());
             
         } 
-        if (GetAsyncKeyState(VK_LSHIFT) & (1 << 16) && CompareGameFunction(Function,"Function Engine.GameModeBase.MustSpectate"))
+        if (mustspectatebypass && CompareGameFunction(Function,"Function Engine.GameModeBase.MustSpectate"))
         {
             std::cout << "BLOCKED" << std::endl;
             return;
         }
         return rProcessEvent(Object, Function, Params);
     }
+
+
+
+
 
     void HookFunctions() {
         // Getting the function pointers to req exit and process event by scanning the games memory 
@@ -45,7 +49,7 @@ namespace Hooks {
         DetourTransactionBegin();
         DetourUpdateThread(GetCurrentThread());
         DetourAttach(&(LPVOID&)rRequestExit, (PVOID)hRequestExit);
-        //DetourAttach(&(LPVOID&)rProcessEvent, (PVOID)hProcessEvent);
+        DetourAttach(&(LPVOID&)rProcessEvent, (PVOID)hProcessEvent);
         DetourTransactionCommit();
         
         
@@ -59,7 +63,7 @@ namespace Hooks {
         DetourTransactionBegin();
         DetourUpdateThread(GetCurrentThread());
         DetourDetach(&(LPVOID&)rRequestExit, (PVOID)hRequestExit);
-        //DetourDetach(&(LPVOID&)rProcessEvent, (PVOID)hProcessEvent);
+        DetourDetach(&(LPVOID&)rProcessEvent, (PVOID)hProcessEvent);
         DetourTransactionCommit();
     }
 }

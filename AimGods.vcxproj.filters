@@ -186,6 +186,45 @@
     <ClInclude Include="GameFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dllmain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\WB_CharacterSelection_parameters.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\WB_CharacterSelection_structs.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\WB_CheatManager_classes.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\WB_CheatManager_parameters.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\WB_CheatManager_structs.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\WB_CharacterSelection_classes.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\GameplayTasks_structs.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\GameplayTasks_parameters.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\GameplayTasks_classes.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\GameplayTags_structs.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\GameplayTags_parameters.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="UFT\SDK\GameplayTags_classes.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -274,6 +313,18 @@
     </ClCompile>
     <ClCompile Include="GameFunctions.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UFT\SDK\WB_CharacterSelection_functions.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="UFT\SDK\WB_CheatManager_functions.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="UFT\SDK\GameplayTasks_functions.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="UFT\SDK\GameplayTags_functions.cpp">
+      <Filter>SDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
