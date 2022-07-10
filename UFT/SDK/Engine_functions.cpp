@@ -67986,7 +67986,7 @@ struct FString APlayerState::GetPlayerName()
 	fn->FunctionFlags |= 0x00000400;
 
 	UObject::ProcessEvent(fn, &params);
-	fn->FunctionFlags = flags;
+	fn->FunctionFlags = flags; 
 
 
 	return params.ReturnValue;
@@ -69560,7 +69560,7 @@ void UCheatManager::InvertMouse()
 
 
 // Function Engine.CheatManager.God
-// (Exec, Native, Public, BlueprintCallable)
+// (  Native, Public, BlueprintCallable)
 void UCheatManager::God()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.CheatManager.God");

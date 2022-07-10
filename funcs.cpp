@@ -1,26 +1,30 @@
 #include <fstream>
 
 #include "framework.h"
+
 namespace Funcs
 {
     std::mutex m;
     std::vector<std::pair<std::string, std::chrono::high_resolution_clock::time_point>> Events{};
-  
+
     void LogEvent(std::string Name, bool PrintToConsole, bool SaveToLog)
     {
         if (!SaveToLog && !PrintToConsole) return;
 
         m.lock();
         static FILE* fp;
-        if (!fp) {
+        if (!fp)
+        {
             std::wstring logpath = L"log_aimgods.txt";
             _wfopen_s(&fp, logpath.c_str(), L"a");
         }
 
         auto it = std::find_if(Events.begin(), Events.end(),
-            [&Name](const std::pair<std::string, std::chrono::high_resolution_clock::time_point>& element) {
-            return element.first.compare(Name.c_str()) == 0;
-        });
+                               [&Name](
+                               const std::pair<std::string, std::chrono::high_resolution_clock::time_point>& element)
+                               {
+                                   return element.first.compare(Name.c_str()) == 0;
+                               });
 
         if (it == Events.end())
         {
@@ -30,9 +34,12 @@ namespace Funcs
         }
 
         auto _it = std::remove_if(Events.begin(), Events.end(),
-            [](const std::pair<std::string, std::chrono::high_resolution_clock::time_point>& element) {
-            return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - element.second).count() > 1000;
-        });
+                                  [](const std::pair<std::string, std::chrono::high_resolution_clock::time_point>&
+                                  element)
+                                  {
+                                      return std::chrono::duration_cast<std::chrono::milliseconds>(
+                                          std::chrono::high_resolution_clock::now() - element.second).count() > 1000;
+                                  });
 
         Events.erase(_it, Events.end());
         m.unlock();
@@ -63,7 +70,7 @@ namespace Funcs
 
     uintptr_t FindPattern(HMODULE module, const unsigned char* pattern, const char* mask)
     {
-        MODULEINFO info = { };
+        MODULEINFO info = {};
         GetModuleInformation(GetCurrentProcess(), module, &info, sizeof(MODULEINFO));
         return FindPattern(reinterpret_cast<uintptr_t>(module), info.SizeOfImage, pattern, mask);
     }
@@ -72,9 +79,11 @@ namespace Funcs
     {
         //return std::string(wstr.begin(), wstr.end());
         if (wstr.empty()) return std::string();
-        int size_needed = WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), NULL, 0, NULL, NULL);
+        int size_needed = WideCharToMultiByte(CP_UTF8, 0, &wstr[0], static_cast<int>(wstr.size()), nullptr, 0, nullptr,
+                                              nullptr);
         std::string strTo(size_needed, 0);
-        WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), &strTo[0], size_needed, NULL, NULL);
+        WideCharToMultiByte(CP_UTF8, 0, &wstr[0], static_cast<int>(wstr.size()), &strTo[0], size_needed, nullptr,
+                            nullptr);
         return strTo;
     }
 
@@ -82,9 +91,15 @@ namespace Funcs
     {
         //return std::wstring(str.begin(), str.end());
         if (str.empty()) return std::wstring();
-        int size_needed = MultiByteToWideChar(CP_UTF8, 0, &str[0], (int)str.size(), NULL, 0);
+        int size_needed = MultiByteToWideChar(CP_UTF8, 0, &str[0], static_cast<int>(str.size()), nullptr, 0);
         std::wstring wstrTo(size_needed, 0);
-        MultiByteToWideChar(CP_UTF8, 0, &str[0], (int)str.size(), &wstrTo[0], size_needed);
+        MultiByteToWideChar(CP_UTF8, 0, &str[0], static_cast<int>(str.size()), &wstrTo[0], size_needed);
         return wstrTo;
+    }
+
+    UFT::FString ToFString(std::string string)
+    {
+        auto wstring = std::wstring(string.begin(), string.end());
+        return UFT::FString(wstring.c_str());
     }
 }

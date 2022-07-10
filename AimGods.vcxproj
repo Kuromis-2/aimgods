@@ -157,6 +157,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AG.h" />
+    <ClInclude Include="DebugMenu.h" />
+    <ClInclude Include="DebugTools.h" />
     <ClInclude Include="detours\detours.h" />
     <ClInclude Include="detours\detver.h" />
     <ClInclude Include="framework.h" />
@@ -207,6 +209,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AG.cpp" />
+    <ClCompile Include="DebugMenu.cpp" />
+    <ClCompile Include="DebugTools.cpp" />
     <ClCompile Include="detours\detours.cpp" />
     <ClCompile Include="detours\disasm.cpp" />
     <ClCompile Include="detours\image.cpp" />

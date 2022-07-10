@@ -25,3 +25,15 @@ static __forceinline UFT::UKismetMathLibrary& GetKismetMathLibrary() { return *(
 static __forceinline UFT::UKismetSystemLibrary& GetKismetSystemLibrary() { return *(UFT::UKismetSystemLibrary*)UFT::UKismetSystemLibrary::StaticClass(); };
 typedef uintptr_t PTR;
 #define IS_VALID(Actor) GetKismetSystemLibrary().STATIC_IsValid(Actor)
+
+// Macros for different builds
+#define SHIPPING 0
+#define NO_SHIPPING 1
+
+#define VERSION SHIPPING
+
+#if VERSION == SHIPPING
+#define COMMENT_IF_NO_SHIPPING //
+#else
+#define COMMENT_IF_NO_SHIPPING
+#endif
